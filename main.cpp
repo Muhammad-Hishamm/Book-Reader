@@ -14,7 +14,7 @@ public:
         cout << "Book is created\n";
     }
 
-    string get_book_name() {
+    string  get_book_name() const {
         return this->book_name;
     }
 };
@@ -27,7 +27,24 @@ private:
     vector<string> list;
 public:
     customer() : login_status(0), signUp_status(0) { list.clear(); } // default constructor Using initailizer List
+    string  getname()const{
+        return this->name;
+    }
+    bool  getlogin_status()const{
+        return this->login_status;
+    }
 
+    bool  getsignup_status()const{
+        return this->login_status;
+    }
+
+    void setlogin_status(bool login){
+        this-> login_status = login;
+    }
+
+    void setsignup_status(bool signup){
+        this->signUp_status = signup;
+    }
     void signUp() { // This fn. enteres the user;
         cout << "signUp:\n";
         cout << "Enter Your name:\n";
@@ -45,7 +62,7 @@ public:
         login_status = signUp_status = 1;
     }
 
-    bool CheckLoginOrNot() {
+    bool  CheckLoginOrNot()const {
         return login_status;
     }
 
@@ -66,7 +83,6 @@ public:
             if (pass2 == this->password && name2 == this->name) break;
             cout << "Name or Password is not valid , please try again\n";
         }
-
         cout << "Welcome To The online book reader\n";
         login_status = 1;
     }
@@ -76,14 +92,12 @@ public:
         login_status = 0;
     }
 
-    void CheckBook() {}
-
     /* void viewProfile() {}   TO BE IMPLMENTED */
     void startToRead(string book_name) { // For choosing a book
         list.push_back(book_name);
     }
 
-    void viewReadingList() {
+    void viewReadingList()const {
         cout << "Your Reading List :\n";
         for (auto book: this->list) {
             cout << book << " ";
@@ -96,7 +110,7 @@ public:
 
 class admin {
 public:
-    bool isAdmin() {
+    bool isAdmin()const {
 
         cout << "Enter the Admin code please\n";
         string entryCode;
@@ -129,7 +143,7 @@ public:
         }
     }
 
-    void viewAllBooks() {
+    void viewAllBooks() const{
         for (auto i: mp) {
             cout << i.first << " " << i.second.get_book_name() << "\n";
         }
@@ -142,6 +156,7 @@ string  ask() {
     cin >> ans;
     return ans;
 }
+
 int main() {
     admin ad;
     customer cu;
@@ -173,9 +188,7 @@ int main() {
                 break;
         }
 
-
         while (ans == "customer") {
-
             cu.login();
             cout << "Choose one of these options\n";
             int num;
@@ -198,9 +211,4 @@ int main() {
         if (ans == "Exit"||ans =="exit")break;
 
     }
-
-
 }
-
-
-
